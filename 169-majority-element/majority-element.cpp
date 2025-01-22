@@ -1,22 +1,18 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        map<int,int>hash;
-        for(int i=0;i<nums.size();i++){
-            if(hash.find(nums[i])!=hash.end()){
-                hash[nums[i]]+=1;
+        int element=nums[0] , count=1;
+        for(int i=1;i<nums.size();i++){
+            if(nums[i]==element){
+                count++;
             }
-            else {
-                hash[nums[i]]=1;
+            else if(nums[i]!=element){
+                count--;
             }
-        }
-        int element,max=0;
-        for(auto& i:hash){
-            if(i.second>max)
-            {
-                max=i.second;
-                element=i.first;
+            if(count==0){
+                element=nums[i+1];
             }
+
         }
         return element;
     }
