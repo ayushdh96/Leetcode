@@ -5,10 +5,9 @@ public:
         vector<int> variables;
         for(int i=0;i<nums.size();i++){
             mpp[nums[i]]+=1;
-        }
-        for(auto &it:mpp){
-            if(it.second>nums.size()/3){
-                variables.push_back(it.first);
+            if(mpp[nums[i]]==((nums.size()/3)+1)){
+                variables.push_back(nums[i]);
+                
             }
         }
         return variables;
