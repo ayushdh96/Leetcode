@@ -12,5 +12,5 @@ public:
         else if(nums[mid]==target){ return mid;}
         else if(nums[mid]>target){return recur(nums,l,mid-1,target);}
         else {return recur(nums,mid+1,last,target);}
-    }
+}
 };
