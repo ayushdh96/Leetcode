@@ -11,7 +11,7 @@ public:
             else{
                 smallest=min(nums[mid],smallest);
                 last=mid-1;
-            }
+              }
         } 
     return smallest;
     }
