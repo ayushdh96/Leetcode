@@ -14,7 +14,7 @@ public:
                 counter=counter+ceil(double(nums[i])/mid);
             }
             if(counter<=threshold){
-                ans=min(mid,ans);
+                ans=mid;
                 last=mid-1;
             }
             else{
