@@ -54,7 +54,7 @@ public:
         Node *previousNode=toBeDeleted->prev;
         previousNode->next=tail;
         tail->prev=previousNode;
-        delete toBeDeleted;
+        
     
 }
             Node *val=new Node(key,value);
