@@ -20,6 +20,9 @@ public:
                     colTop=mid+1;
                 }
             }
+            if(flag==1){
+                break;
+            }
         }
         if(flag==1){
             return true;}
