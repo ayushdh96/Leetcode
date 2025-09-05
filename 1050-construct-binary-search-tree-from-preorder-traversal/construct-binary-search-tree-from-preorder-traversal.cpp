@@ -21,7 +21,7 @@ public:
         return consturctTree(preorder, i, bound);
     }
 
-    TreeNode* consturctTree( vector<int> preorder, int& i, int bound){
+    TreeNode* consturctTree( vector<int>& preorder, int& i, int bound){
         if(i>=preorder.size() || preorder[i]>bound) return NULL;
         TreeNode* newNode=new TreeNode(preorder[i]);
         i=i+1;
