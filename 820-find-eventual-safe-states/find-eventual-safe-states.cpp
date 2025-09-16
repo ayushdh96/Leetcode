@@ -7,11 +7,7 @@ public:
         for(int i=0;i<graph.size();i++){
             for(int j=0;j<graph[i].size();j++){
                 adj[graph[i][j]].push_back(i);
-            }
-        }
-        for(int i=0;i<adj.size();i++){
-            for(int j=0;j<adj[i].size();j++){
-                indegree[adj[i][j]]++;
+                indegree[i]++;
             }
         }
         queue<int> q;
