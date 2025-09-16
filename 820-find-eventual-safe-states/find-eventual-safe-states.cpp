@@ -18,14 +18,13 @@ public:
         while(!q.empty()){
             int curr=q.front();
             q.pop();
+            ans.push_back(curr);
             for(int i=0;i<adj[curr].size();i++){
                 indegree[adj[curr][i]]--;
                 if(indegree[adj[curr][i]]==0) q.push(adj[curr][i]);
             }
         }
-        for(int i=0;i<adj.size();i++){
-            if(indegree[i]==0) ans.push_back(i);
-        }
+        sort(ans.begin(),ans.end());
         return ans;
     }
 };
