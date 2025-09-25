@@ -20,31 +20,21 @@ public:
             if(currRow+1<row && abs(heights[currRow+1][currCol]-currHeight)<diff[currRow+1][currCol]){
                 pq.push({max(currDist,abs(heights[currRow+1][currCol]-currHeight)),{currRow+1,currCol}});
                 diff[currRow+1][currCol]=abs(heights[currRow+1][currCol]-currHeight);
-                if(pq.top().second.first==row-1 && pq.top().second.second==col-1){
-                    return pq.top().first;
-                }
+                
             }
             if(currRow-1>=0 && abs(heights[currRow-1][currCol]-currHeight)<diff[currRow-1][currCol]){
                 pq.push({max(currDist,abs(heights[currRow-1][currCol]-currHeight)),{currRow-1,currCol}});
                 diff[currRow-1][currCol]=abs(heights[currRow-1][currCol]-currHeight);
-                if(pq.top().second.first==row-1 && pq.top().second.second==col-1){
-                    return pq.top().first;
-                }
+                
                 
             }
             if(currCol+1<col && abs(heights[currRow][currCol+1]-currHeight)<diff[currRow][currCol+1]){
                 pq.push({max(currDist,abs(heights[currRow][currCol+1]-currHeight)),{currRow,currCol+1}});
                 diff[currRow][currCol+1]=abs(heights[currRow][currCol+1]-currHeight);
-                if(pq.top().second.first==row-1 && pq.top().second.second==col-1){
-                    return pq.top().first;
-                }
             }
             if(currCol-1>=0 && abs(heights[currRow][currCol-1]-currHeight)<diff[currRow][currCol-1]){
                 pq.push({max(currDist,abs(heights[currRow][currCol-1]-currHeight)),{currRow,currCol-1}});
                 diff[currRow][currCol-1]=abs(heights[currRow][currCol-1]-currHeight);
-                if(pq.top().second.first==row-1 && pq.top().second.second==col-1){
-                    return pq.top().first;
-                }
             }
         }
 
