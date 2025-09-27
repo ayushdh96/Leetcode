@@ -6,11 +6,14 @@ public:
             adj[edges[i][0]].push_back({edges[i][1],edges[i][2]});
             adj[edges[i][1]].push_back({edges[i][0],edges[i][2]});
         }
-        vector<vector<int>> dist(n,vector<int>(n,INT_MAX));
         priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        int leastCityCount=INT_MAX;
+        int ans;
         for(int i=0;i<n;i++){
-            dist[i][i]=0;
+            vector<int> dist(n,INT_MAX);
+            dist[i]=0;
             pq.push({0,i});
+            int count=0;
             while(!pq.empty()){
                 int currDistance=pq.top().first;
                 int currNode=pq.top().second;
@@ -18,24 +21,20 @@ public:
                 for(int j=0;j<adj[currNode].size();j++){
                     int nextNode=adj[currNode][j].first;
                     int nextWeight=adj[currNode][j].second;
-                    if(currDistance+nextWeight<dist[i][nextNode]){
-                        dist[i][nextNode]=currDistance+nextWeight;
+                    if(currDistance+nextWeight<dist[nextNode] && currDistance+nextWeight<=distanceThreshold){
+                        cout<<nextNode<<" "<<currDistance+nextWeight<<"yas"<<"\n";
+                        if(dist[nextNode]==INT_MAX) count++;
+                        dist[nextNode]=currDistance+nextWeight;
                         pq.push({currDistance+nextWeight,nextNode});
                     }
                 }
             }
-        }
-            int leastCityCount=INT_MAX;
-            int ans;
-            for(int i=0;i<n;i++){
-                int currentCityCount=0;
-                for(int j=0;j<n;j++){
-                    if(dist[i][j]<=distanceThreshold && i!=j) currentCityCount++;
+            cout<<count<<" "<<i<<"\n";
+            if(count<=leastCityCount) {
+                ans=i;
+                leastCityCount=count;
                 }
-                if(currentCityCount<=leastCityCount){
-                    ans=i; 
-                    leastCityCount=currentCityCount;}
-            }
+        }
         return ans;
         }
 };
