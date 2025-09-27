@@ -22,14 +22,12 @@ public:
                     int nextNode=adj[currNode][j].first;
                     int nextWeight=adj[currNode][j].second;
                     if(currDistance+nextWeight<dist[nextNode] && currDistance+nextWeight<=distanceThreshold){
-                        cout<<nextNode<<" "<<currDistance+nextWeight<<"yas"<<"\n";
                         if(dist[nextNode]==INT_MAX) count++;
                         dist[nextNode]=currDistance+nextWeight;
                         pq.push({currDistance+nextWeight,nextNode});
                     }
                 }
             }
-            cout<<count<<" "<<i<<"\n";
             if(count<=leastCityCount) {
                 ans=i;
                 leastCityCount=count;
