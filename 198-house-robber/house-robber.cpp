@@ -4,13 +4,19 @@ private:
         if(idx<0) return 0;
         else if(dp[idx]!=-1) return dp[idx];
         int pick=nums[idx] + houseRobber(idx-2,dp,nums);
-        int nopick=0 + houseRobber(idx-1,dp,nums);
+        int nopick= houseRobber(idx-1,dp,nums);
         return dp[idx]=max(pick,nopick);
     }
 public:
     int rob(vector<int>& nums) {
         int n=nums.size();
         vector<int> dp(n,-1);
-        return houseRobber(n-1,dp,nums);
+        for(int i=0;i<n;i++){
+            int take=nums[i]; if(i>=2) take=take+dp[i-2];
+            int Notake=0; if(i>=1) Notake=Notake+dp[i-1];
+            dp[i]=max(take,Notake);
+        }
+        return dp[n-1];
+        //return houseRobber(n-1,dp,nums);
     }
 };
