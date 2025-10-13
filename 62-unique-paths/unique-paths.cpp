@@ -1,3 +1,4 @@
+//Time complecxity with recusion 2^m*n and with dp O(m*n) and sc->o(m*n) dp + o(m-1) + o(n-1) recursion stack space
 class Solution {
 private:
     int movement(int row, int col, vector<vector<int>>& dp){
