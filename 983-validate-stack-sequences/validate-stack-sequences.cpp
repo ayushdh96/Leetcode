@@ -25,9 +25,8 @@ public:
             st.pop();
             j++;
         }
-    cout<<i<<"\n"<<j;
     if(st.empty()) return true;
-    else {while(!st.empty()){cout<<st.top()<<"\n";st.pop();}return false;}
+    else return false;
 
     }
     
