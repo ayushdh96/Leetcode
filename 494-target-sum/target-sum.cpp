@@ -23,7 +23,24 @@ public:
         target=abs(target);
         if((totalSum-target)%2!=0 || totalSum-target<0) return 0;
 
-        vector<vector<int>> dp(length,vector<int>(totalSum+1,-1));
-        return recur(length-1,(totalSum-target)/2,nums,dp);
+        //vector<vector<int>> dp(length,vector<int>(totalSum+1,-1));
+        //return recur(length-1,(totalSum-target)/2,nums,dp);
+        vector<vector<int>> dp(length,vector<int>(totalSum+1,0));
+        if (nums[0] == 0) dp[0][0] = 2;                // +0 or -0
+    else {
+        dp[0][0] = 1;                              // don't take first
+        if (nums[0] <= (totalSum-target)/2) dp[0][nums[0]] = 1;      // take first
+    }
+        for(int index=1;index<length;index++){
+            for(int t=0;t<=(totalSum-target)/2;t++){
+                int noPick=dp[index-1][t];
+                int pick=0;
+                if(nums[index]<=t) pick=dp[index-1][t-nums[index]];
+                dp[index][t]=pick+noPick;
+            }
+        }
+        return dp[length-1][(totalSum-target)/2];
+
+
     }
 };
