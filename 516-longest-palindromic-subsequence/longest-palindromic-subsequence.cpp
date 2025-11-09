@@ -17,17 +17,20 @@ public:
         for(int i=length1-1;i>=0;i--) s2[length1-1-i]=s[i];
         //vector<vector<int>> dp(length1+1,vector<int>(length1+1,-1));
         //return recur(length1,length1,s,s2,dp);
-        vector<vector<int>> dp(length1+1,vector<int>(length1+1,0));
+        //vector<vector<int>> dp(length1+1,vector<int>(length1+1,0));
+        vector<int> curr(length1+1,0);
+        vector<int> prev(length1+1,0);
         for(int index1=1;index1<=length1;index1++){
             for(int index2=1;index2<=length1;index2++){
-                if(s[index1-1]==s2[index2-1]) dp[index1][index2]= 1 + dp[index1-1][index2-1];
+                if(s[index1-1]==s2[index2-1]) curr[index2]= 1 + prev[index2-1];
                 else{
-                    int left=dp[index1-1][index2];
-                    int right=dp[index1][index2-1];
-                    dp[index1][index2]=max(left,right);
+                    int left=prev[index2];
+                    int right=curr[index2-1];
+                    curr[index2]=max(left,right);
                 }
             }
+            prev=curr;
         }
-        return dp[length1][length1];
+        return prev[length1];
     }
 };
