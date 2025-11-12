@@ -25,7 +25,26 @@ public:
     bool isMatch(string s, string p) {
         int length1=s.size();
         int length2=p.size();
-        vector<vector<int>> dp(length1+1,vector<int>(length2+1,-1));
-        return recur(length1,length2,s,p,dp);
+        //vector<vector<int>> dp(length1+1,vector<int>(length2+1,-1));
+        //return recur(length1,length2,s,p,dp);
+        vector<vector<bool>> dp(length1+1,vector<bool>(length2+1,0));
+        dp[0][0]=1;
+        int index2=1;
+        while(p[index2-1]=='*' && index2<=length2){
+            dp[0][index2]=1;
+            index2++;
+        }
+        for(int index1=1;index1<=length1;index1++){
+            for(int index2=1;index2<=length2;index2++){
+                if(s[index1-1]==p[index2-1] || p[index2-1]=='?') dp[index1][index2]=dp[index1-1][index2-1];
+                else if(p[index2-1]=='*'){
+                    bool noConsider=dp[index1][index2-1];
+                    bool stay=dp[index1-1][index2];
+                    dp[index1][index2]=(noConsider || stay);
+                }
+                else{dp[index1][index2]= false; }
+            }
+        }
+        return dp[length1][length2];
     }
 };
