@@ -15,7 +15,21 @@ private:
 public:
     int maxProfit(vector<int>& prices) {
         int length=prices.size();
-        vector<vector<vector<int>>> dp(length,vector<vector<int>>(2,vector<int>(3,-1)));
-        return recur(0,1,2,prices,dp);
+        //vector<vector<vector<int>>> dp(length,vector<vector<int>>(2,vector<int>(3,-1)));
+        //return recur(0,1,2,prices,dp);
+        vector<vector<vector<int>>> dp(length+1,vector<vector<int>>(2,vector<int>(3,0)));
+        for(int index=length-1;index>=0;index--){
+            for(int buy=0;buy<=1;buy++){
+                for(int transaction=1;transaction<=2;transaction++){
+                    if(buy==1){
+                        dp[index][buy][transaction]= max(-prices[index] + dp[index+1][0][transaction], dp[index+1][1][transaction]);
+                    }
+                    else{
+                        dp[index][buy][transaction]=max(+prices[index] + dp[index+1][1][transaction-1],dp[index+1][0][transaction]);
+                    }
+                }
+            }
+        }
+        return dp[0][1][2];
     }
 };
