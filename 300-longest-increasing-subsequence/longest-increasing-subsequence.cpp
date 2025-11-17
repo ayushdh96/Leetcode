@@ -12,7 +12,18 @@ private:
     }
 public:
     int lengthOfLIS(vector<int>& nums) {
-        vector<vector<int>> dp(nums.size(),vector<int>(nums.size()+1,-1));
-        return recur(0,-1,nums,dp);
+        //vector<vector<int>> dp(nums.size(),vector<int>(nums.size()+1,-1));
+        //return recur(0,-1,nums,dp);
+        vector<vector<int>> dp(nums.size()+1,vector<int>(nums.size()+1,0));
+        for(int index=nums.size()-1;index>=0;index--){
+            for(int prev=index-1;prev>=-1;prev--){
+                int length=dp[index+1][prev+1];
+                if(prev==-1 || nums[index]>nums[prev]){
+                    dp[index][prev+1]=max(length, 1+dp[index+1][index+1]);
+                }
+                else dp[index][prev+1]=length;
+            }
+        }
+        return dp[0][0];
     }
 };
