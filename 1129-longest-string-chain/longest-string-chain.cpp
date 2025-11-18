@@ -23,9 +23,6 @@ public:
     int longestStrChain(vector<string>& words) {
         vector<int> dp(words.size(),1);
         sort(words.begin(),words.end(),comp);
-        for(int i=0;i<words.size();i++){
-        cout<<words[i]<<"\n";
-        }
         int maxi=1;
         for(int i=0;i<words.size();i++){
             int count=0;
