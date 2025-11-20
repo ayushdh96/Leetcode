@@ -28,8 +28,8 @@ public:
         // ----- BOTTOM-UP (fixed) -----
         vector<vector<int>> dp(m, vector<int>(m, 0)); // use m, not origSize+1
 
-        for(int i = m - 2; i >= 1; i--){          // i: from m-2 down to 1
-            for(int j = i; j <= m - 2; j++){      // j: from i up to m-2
+        for(int i = origSize; i >= 1; i--){          // i: from m-2 down to 1
+            for(int j = i; j <= origSize; j++){      // j: from i up to m-2
                 int mini = 1e9;
                 for(int k = i; k <= j; k++){
                     int cost = cuts[j+1] - cuts[i-1]
@@ -37,7 +37,7 @@ public:
                              + dp[k+1][j];
                     if(mini > cost) mini = cost;
                 }
-                dp[i][j] = (mini == 1e9 ? 0 : mini);
+                dp[i][j] = mini;
             }
         }
         return dp[1][m-2];
