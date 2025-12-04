@@ -21,14 +21,11 @@ public:
             backPointer=backPointer->next;
             frontPointer=frontPointer->next;
         }
-        if(backPointer->next==NULL){
-            return head->next;
-        }
-        else{
+        
             ListNode* temp=backPointer->next;
             backPointer->next=backPointer->next->next;
             temp->next=nullptr;
-        }
+        
         return head;
     }
 };
